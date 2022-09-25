@@ -1,0 +1,42 @@
+Makefile
+README.md
+learn_sys_call.c
+lexer.c
+lexer.o
+libft
+libft.a
+line
+lol.txt
+main.c
+main.o
+minihsell.dSYM
+minishell
+minishell.dSYM
+minishell.h
+parser.c
+parser.o
+pseudo_code.txt
+readline
+total 344
+drwxr-xr-x  22 hkaddour  candidate    748 Jun 18 15:12 .
+drwxr-xr-x  68 hkaddour  candidate   2380 Jun 18 15:18 ..
+drwxr-xr-x  13 hkaddour  candidate    442 Jun 17 14:08 .git
+-rw-r--r--   1 hkaddour  candidate   1601 Jun 17 16:33 Makefile
+-rw-r--r--   1 hkaddour  candidate     63 Jun  7 16:13 README.md
+-rw-r--r--   1 hkaddour  candidate    915 Jun 12 19:17 learn_sys_call.c
+-rw-r--r--   1 hkaddour  candidate   6230 Jun 18 15:12 lexer.c
+-rw-r--r--   1 hkaddour  candidate   4504 Jun 18 15:12 lexer.o
+drwxr-xr-x  72 hkaddour  candidate   2448 Jun 15 09:43 libft
+-rw-r--r--   1 hkaddour  candidate  33200 Jun 15 09:43 libft.a
+-rw-r--r--   1 hkaddour  candidate      6 Jun 17 15:55 line
+-rw-r--r--   1 hkaddour  candidate    188 Jun 18 14:22 lol.txt
+-rw-r--r--   1 hkaddour  candidate   5246 Jun 18 11:55 main.c
+-rw-r--r--   1 hkaddour  candidate   4644 Jun 18 11:58 main.o
+drwxr-xr-x   3 hkaddour  candidate    102 Jun 11 09:05 minihsell.dSYM
+-rwxr-xr-x   1 hkaddour  candidate  51912 Jun 18 15:12 minishell
+drwxr-xr-x   3 hkaddour  candidate    102 Jun 11 09:06 minishell.dSYM
+-rw-r--r--   1 hkaddour  candidate   2157 Jun 18 12:04 minishell.h
+-rw-r--r--   1 hkaddour  candidate  10639 Jun 18 11:25 parser.c
+-rw-r--r--   1 hkaddour  candidate   5124 Jun 18 11:27 parser.o
+-rw-r--r--   1 hkaddour  candidate    134 Jun 11 17:58 pseudo_code.txt
+lrwxr-xr-x   1 hkaddour  candidate     43 Jun 12 16:18 readline -> /Users/hkaddour/.brew/Cellar/readline/8.1.2
