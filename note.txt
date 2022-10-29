@@ -1,0 +1,3 @@
+-tokenizer (data->n_line = data->beg_line;)
+-lexer_1 (check if d_Q and s_Q are closed - if there is multiple pipe - if there is ';;')
+-lexer_2 (check heredoc(delimiter - check redirection))
