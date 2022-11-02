@@ -6,7 +6,7 @@
 /*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 16:18:49 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/31 22:21:08 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/02 05:03:26 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,10 @@ int	unset_error_checking(t_data *data, char *cmd)
 {
 	int	i;
 
-	if (ft_isdigit(cmd[0]))
-		return (1);
 	i = 1;
+	if (ft_isdigit(cmd[0]) || (!ft_isalnum(cmd[0]) \
+				&& cmd[0] != '_'))
+		return (1);
 	while (cmd[i])
 	{
 		if (!ft_isdigit(cmd[i]) && !ft_isalnum(cmd[i]) \
@@ -69,7 +70,7 @@ void	unset_cmd(t_data *data, t_cmd *trav_c)
 		{
 			data->chk_dolla = 1;
 			dup2(data->s_stdout, STDOUT_FILENO);
-			printf("minishell: unset: '%s': not a valid identifier\n", \
+			printf("minishell: unset: `%s': not a valid identifier\n", \
 					trav_c->cmd[i]);
 			close(data->s_stdout);
 		}

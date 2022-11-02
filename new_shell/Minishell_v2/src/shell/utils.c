@@ -6,7 +6,7 @@
 /*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 05:11:04 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/17 12:52:55 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/02 05:29:02 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	process_kill(t_data *data)
 {
 	printf(MOVE_UP_RIGHRT "\t\texit\n");
 	free_data_die_process(data);
-	exit(131);
+	exit(0);
 }
 
 void	*allocation(t_data *data, size_t count, size_t size, int chk)

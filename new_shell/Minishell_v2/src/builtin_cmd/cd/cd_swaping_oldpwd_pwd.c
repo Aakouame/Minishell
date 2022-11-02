@@ -6,7 +6,7 @@
 /*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 22:39:52 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/01 11:18:54 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/01 11:51:44 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,6 @@ void	execute_cd_two_mines(t_data *data)
 	char	*val;
 
 	execute_cd_swap_init(data, &pwd, &old);
-	//val = old->value;
-	//if (access(val, F_OK) != 0)
-	//{
-	//	data->chk_dolla = 1;
-	//	dup2(data->s_stdout, STDOUT_FILENO);
-	//	printf("minishell: cd: %s: No such file or directory\n", val);
-	//	close(data->s_stdout);
-	//	return ;
-	//}
 	val = getenv("HOME");
 	if (!val)
 	{
@@ -103,7 +94,6 @@ void	execute_cd_two_mines(t_data *data)
 	else
 	{
 		old->value = data->pwd_of_mysys;
-		//data->pwd_of_mysys = val;
 		data->pwd_of_mysys = add_dup(data, val, 0);
 	}
 	data->chk_dolla = 0;
@@ -112,11 +102,6 @@ void	execute_cd_two_mines(t_data *data)
 
 void	cd_between_pwd_and_oldpwd(t_data *data, char *cmd)
 {
-	//if (cmd[1] cmd[2] != 0)
-	//{
-	//	error_cd(data, "minishell: cd: -: invalid option");
-	//	return ;
-	//}
 	if (!cmd[1])
 	{
 		if (check_old_pwd(data))

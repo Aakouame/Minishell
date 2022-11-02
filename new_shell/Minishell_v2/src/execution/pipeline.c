@@ -6,7 +6,7 @@
 /*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:02:51 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/01 10:25:46 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/02 07:44:33 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static int	plug_pipes_in_node(t_data *data)
 	{
 		if (pipe(fd) < 0)
 		{
+			printf("******** nanai ********\n");
 			error_fork(data);
 			return (1);
 		}
@@ -80,6 +81,10 @@ static void	child_process_of_pipeline(t_data *data, t_cmd *trav)
 		//close(data->s_stdout);
 		close(trav->tab_pipe[0]);
 		close(trav->tab_pipe[1]);
+		//if (trav->f_in > 0)
+		//	close(trav->f_in);
+		//if (trav->f_out > 1)
+		//	close(trav->f_out);
 		execute_sys_cmd(data, trav);
 	}
 }
@@ -91,7 +96,10 @@ void	pipeline(t_data *data)
 	t_cmd	*p_trav;
 
 	if (plug_pipes_in_node(data))
+	{
 		pipeline_helper(data);
+		return ;
+	}
 	plug_redirection_in_node(data);
 	trav = data->v_cmd;
 	p_trav = 0;
@@ -103,7 +111,17 @@ void	pipeline(t_data *data)
 		if (pid == 0)
 			child_process_of_pipeline(data, trav);
 		if (p_trav)
+		{
+			//close(p_trav->tab_pipe[0]);
+
 			close(p_trav->tab_pipe[1]);
+		}
+		//close(trav->tab_pipe[1]);
+		//if (trav->f_in > 0)
+		//	close(trav->f_in);
+		//if (trav->f_out > 1)
+		//	close(trav->f_out);
+
 		close(trav->tab_pipe[0]);
 
 		//close(data->s_stdout);

@@ -6,7 +6,7 @@
 /*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 08:44:51 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/16 12:23:06 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/02 02:02:35 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	heredoc_alloc(t_data *data, char *dolla, char *ptr)
 		free(dolla);
 		dolla = env->value;
 	}
+	else
+		return ;
 	len = 0;
 	while (dolla[len])
 		ptr[data->j++] = dolla[len++];
@@ -51,6 +53,8 @@ void	heredoc_dolla_allocate(t_data *data, char *ptr, char *str)
 			len++;
 		}
 		dolla = ft_calloc(len + 1, sizeof(char));
+		if (!dolla)
+			error_alloc();
 		data->i -= len;
 		len = 0;
 		while (ft_acceptable_char(str[data->i]))

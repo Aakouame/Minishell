@@ -6,7 +6,7 @@
 /*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 08:40:06 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/24 20:07:52 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/02 02:50:41 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,20 +60,23 @@ static void	heredoc_dolla(t_data *data, char *ptr, char *str)
 
 static char	*fill_data(t_data *data, char *str)
 {
-	char	*ptr;
+	//char	*ptr;
 
-	ptr = ft_calloc(len_hrdoc_data(data, str) + 1, sizeof(char));
-	if (!ptr)
-		error_alloc();
-	data->i = 0;
-	data->j = 0;
-	while (str[data->i])
-	{
-		if (str[data->i] == '$')
-			heredoc_dolla(data, ptr, str);
-		ptr[data->j++] = str[data->i++];
-	}
-	return (ptr);
+	expand_the_value(data, str);
+	//printf("%s\n", data->buff_expnd);
+	//ptr = ft_calloc(len_hrdoc_data(data, str) + 1, sizeof(char));
+	//if (!ptr)
+	//	error_alloc();
+	//data->i = 0;
+	//data->j = 0;
+	//while (str[data->i])
+	//{
+	//	if (str[data->i] == '$')
+	//		heredoc_dolla(data, ptr, str);
+	//	else
+	//		ptr[data->j++] = str[data->i++];
+	//}
+	return (data->buff_expnd);
 }
 
 static void	heredoc_process(t_data *data, char *det)
@@ -92,9 +95,12 @@ static void	heredoc_process(t_data *data, char *det)
 		if (!ft_strcmp(heredoc, det))
 			break ;
 		hold = heredoc;
-		if (data->chk_q_hrdoc == 0)
+		if (!data->chk_q_hrdoc)
+		{
 			heredoc = fill_data(data, heredoc);
-		free(hold);
+			free(hold);
+		}
+		//free(hold);
 		hold = ft_strjoin(heredoc, "\n");
 		free(heredoc);
 		heredoc = data->buff;

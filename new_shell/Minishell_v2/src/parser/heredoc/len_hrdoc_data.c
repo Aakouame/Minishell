@@ -6,7 +6,7 @@
 /*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 09:05:56 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/16 12:24:03 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/02 02:03:01 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	heredoc_alloc(t_data *data, char *dolla)
 		free(dolla);
 		dolla = env->value;
 	}
+	else
+		return ;
 	data->hrdoc_len += ft_strlen(dolla);
 }
 

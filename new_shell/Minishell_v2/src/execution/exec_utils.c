@@ -6,7 +6,7 @@
 /*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 04:58:13 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/31 22:00:02 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/02 03:28:52 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,23 @@ int	find_slash(char *cmd)
 
 void	exit_status(int *exit_stat, int status)
 {
-	if (status == 256)
-		*exit_stat = 1;
-	else if (status == 32256)
-		*exit_stat = 126;
-	else if (status == 32512 || status == 13)
-		*exit_stat = 127;
+	//*exit_stat = status % 255;
+	//*exit_stat = status % 256;
+
+	//still have prob if i exit with 255 ./minishell
+	if (status < 0)
+		*exit_stat = status % 255 + 256;
 	else
-		*exit_stat = 0;
+		*exit_stat = status % 255;
+
+	//if (status == 256)
+	//	*exit_stat = 1;
+	//else if (status == 32256)
+	//	*exit_stat = 126;
+	//else if (status == 32512 || status == 13)
+	//	*exit_stat = 127;
+	//else
+	//	*exit_stat = 0;
 }
 
 void	fds_closer(t_cmd *cmd, t_red *red)

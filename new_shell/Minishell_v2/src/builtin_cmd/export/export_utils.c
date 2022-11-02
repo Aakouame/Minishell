@@ -6,7 +6,7 @@
 /*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 02:54:40 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/17 09:38:27 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/02 04:13:25 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int	only_accepted_char(char *cmd, int hold)
 	int	i;
 
 	i = 1;
-	if (ft_isdigit(cmd[0]))
+	if (ft_isdigit(cmd[0]) || (!ft_isalnum(cmd[0]) \
+				&& cmd[0] != '_'))
 		return (1);
 	while (i < hold)
 	{
@@ -85,8 +86,8 @@ int	check_export_error(t_data *data, char *cmd)
 	hold = ft_strcspn(cmd, "=");
 	if (only_accepted_char(cmd, hold))
 		return (1);
-	if (cmd[i] == '=' || cmd[i] == '+')
-		return (1);
+	//if (cmd[i] == '=' || cmd[i] == '+')
+	//	return (1);
 	while (cmd[i] != '=' && cmd[i])
 		i++;
 	if (cmd[i] == 0)

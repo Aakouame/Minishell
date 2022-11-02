@@ -6,7 +6,7 @@
 /*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:22:17 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/23 18:33:46 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/02 05:09:11 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	pipeline_helper(t_data *data)
 {
-	error_fork(data);
+	//error_fork(data);
 	error_close_pipes(data);
 }
 

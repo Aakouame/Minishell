@@ -6,7 +6,7 @@
 /*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:38:38 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/31 22:17:51 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/02 03:31:32 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 
 static void	exit_stat(t_data *data, char *cmd, int stat, int chk)
 {
-	dup2(data->s_stdout, STDOUT_FILENO);
+	//dup2(data->s_stdout, STDOUT_FILENO);
 	printf("exit\n");
 	if (chk == 1)
 		printf("minishell: exit: %s: numeric argument required\n", cmd);
-	close(data->s_stdout);
+	//close(data->s_stdout);
 	free_data_die_process(data);
+	//data->chk_dolla = stat;
 	exit(stat);
 }
 
 static int	check_nbr(char *arg)
 {
-	if (*arg == '-')
+	if (*arg == '-' || *arg == '+')
 		arg++;
 	while (*arg)
 	{
@@ -65,13 +66,45 @@ static int	check_if_llong(char *nbr)
 		return (0);
 }
 
+int	status_len(int stat)
+{
+	int	i;
+
+	i = 0;
+	while (stat)
+	{
+		stat /= 10;
+		i++;
+	}
+	return (i);
+}
+
 static void	exit_number(t_data *data, char *nbr)
 {
-	int		nb_exit;
+	//long long	nb_exit;
+	int	nb_exit;
+	//int	len;
 
-	nb_exit = ft_atoi(nbr);
-	if (check_if_llong(nbr))
+	//nb_exit = ft_atoi(nbr);
+	////if (nb)
+	//len = 19;
+	//if (nb_exit < 0)
+	//	len++;
+	//printf("%d | %d\n", status_len(nb_exit), len);
+	//if (status_len(nb_exit) >= len)
+	//{
+	int	i;
+
+	i = 0;
+	if (nbr[i] == '+')
+		i++;
+	while (nbr[i] && nbr[i] == '0')
+		i++;
+	printf("%s\n", &nbr[i]);
+	if (check_if_llong(&nbr[i]))
 		exit_stat(data, nbr, 255, 1);
+	//}
+	nb_exit = ft_atoi(nbr);
 	exit_stat(data, 0, (nb_exit % 256), 0);
 }
 

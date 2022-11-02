@@ -6,7 +6,7 @@
 /*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 15:53:03 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/29 13:35:39 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/02 01:55:17 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ t_token *cpy_data_to_join_token(t_data *data, t_token *trav, j_token *j_trav)
     while (trav->type == WRD || trav->type == DOLLA || \
         trav->type == S_QUOT || trav->type == D_QUOT)
     {
+        if (data->tokn_hrdoc && (trav->type == S_QUOT || trav->type == D_QUOT))
+            data->chk_q_hrdoc = 1;
         ft_strlcpy(&j_trav->value[len], trav->value, ft_strlen(trav->value) + 1);
         len += ft_strlen(trav->value);
         trav = trav->next;
@@ -116,6 +118,8 @@ void    join_t_token(t_data *data)
     j_token *j_trav;
 
     trav = data->t_token;
+    data->chk_q_hrdoc = 0;
+    data->tokn_hrdoc = 0;
     allocate_join_token(data);
     j_trav = data->t_join;
     while (trav)
@@ -133,6 +137,7 @@ void    join_t_token(t_data *data)
                 trav->type == I_TRNC || trav->type == I_APEND)
         {
             j_trav->type = trav->type;
+            data->tokn_hrdoc = 1;
             if (trav->next->type == W_SPACE)
                 trav = trav->next->next;
             else

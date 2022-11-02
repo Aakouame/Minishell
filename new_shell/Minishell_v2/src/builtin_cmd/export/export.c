@@ -6,7 +6,7 @@
 /*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 13:52:18 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/31 22:06:34 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/02 05:03:14 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ static void	export_cmd_helper(t_data *data, t_env **trav_e, \
 	{
 		data->chk_dolla = 1;
 		dup2(data->s_stdout, STDOUT_FILENO);
-		printf("minishell: export: '%s': not a valid identifier\n", \
+		printf("minishell: export: `%s': not a valid identifier\n", \
 				trav_c->cmd[i]);
 		close(data->s_stdout);
 	}

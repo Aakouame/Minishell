@@ -6,7 +6,7 @@
 /*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 12:45:39 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/29 12:10:03 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/02 07:50:29 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@ void	tokenizer(t_data *data)
 {
 	if (tokenizer_init(data))
 		return ;
-	data->hrdoc_delimiter_dolla = 0; // loading , add init data
-	data->t_token = 0;
-	data->qot_aftr_dolla = 0;
 	while (*data->n_line)
 	{
 		if (is_word(data, data->n_line) || is_s_quote(data, data->n_line) || \

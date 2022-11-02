@@ -6,7 +6,7 @@
 /*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 10:24:18 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/31 21:16:58 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/02 03:03:47 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@
 # define CLR1 "\001\e[40m \e[97m \e[44m\e[30m\e[44m \e[30m\002"
 # define CLR1ERR "\001\e[103m \e[91m \e[40m\e[93m \e[97m \e[44m\e[30m\e[44m \e[30m\002"
 # define CLR2 "\001 \e[0m\e[34m\e[0m \002"
-# define INT_MAX 2147483647
-# define INT_MIN -2147483648
 # define LL_MAX "9223372036854775807"
 # define LL_MIN "-9223372036854775808"
 
@@ -106,6 +104,7 @@ typedef struct s_data
 	char	*buff_expnd;
 	int		exp_len;
 	int		qot_aftr_dolla;
+	int		tokn_hrdoc; //this one is to show me that im in heredoc in join tokenizer
 	j_token	*t_join;
 	j_token *trav;
 

@@ -6,7 +6,7 @@
 /*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 17:25:11 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/27 15:43:24 by akouame          ###   ########.fr       */
+/*   Updated: 2022/11/02 07:56:40 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,18 @@
 
 static void check_if_exist_in_env(t_data *data, char *tmp)
 {
-    t_env   *env;
+	t_env   *env;
 
-    env = getenv_addr(data, tmp);
-    if (!env)
-        return ;
-    else
-    {
-        data->j += ft_strlcpy(&data->buff_expnd[data->j], env->value, ft_strlen(env->value) + 1);
-        //data->exp_len += ft_strlen(env->value);
-    }
+	env = getenv_addr(data, tmp);
+	if (!env)
+		return ;
+	else
+		data->j += ft_strlcpy(&data->buff_expnd[data->j], env->value, \
+				ft_strlen(env->value) + 1);
 }
 
 static void allocate_expand_dollar(t_data *data, char *value)
 {
-    char *dollar;
     char *tmp;
     int     j;
 
@@ -67,7 +64,7 @@ static void allocate_expand_dollar(t_data *data, char *value)
         data->buff_expnd[data->j++] = '$';
         data->buff_expnd[data->j++] = value[data->i++];
     }
-    else
+    else if (ft_acceptable_char(value[data->i]))
     {
         while (value[data->i] && ft_acceptable_char(value[data->i]))
         {
@@ -78,23 +75,21 @@ static void allocate_expand_dollar(t_data *data, char *value)
         dup_from_addr_to_other(tmp, &value[data->i - j], &value[data->i]);
         check_if_exist_in_env(data, tmp);
     }
+    else
+        data->buff_expnd[data->j++] = '$';
 }
 
-char *expand_the_value(t_data *data, char *value)
+char	*expand_the_value(t_data *data, char *value)
 {
-    data->buff_expnd = allocation(data, expand_len(data, value) + 1, sizeof(char), 1);
-    //printf("%d\n", data->exp_len);
-    data->i = 0;
-    data->j = 0;
-    while (value[data->i])
-    {
-        if (value[data->i] == '$')
-        {
-            allocate_expand_dollar(data, value);
-        }
-        else
-            data->buff_expnd[data->j++] = value[data->i++];
-    }
-    //printf("%s\n", data->buff_expnd);
-    return (0);
+	data->buff_expnd = allocation(data, expand_len(data, value) + 1, sizeof(char), 1);
+	data->i = 0;
+	data->j = 0;
+	while (value[data->i])
+	{
+		if (value[data->i] == '$')
+			allocate_expand_dollar(data, value);
+		else
+			 data->buff_expnd[data->j++] = value[data->i++];
+	}
+	return (0);
 }

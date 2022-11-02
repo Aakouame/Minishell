@@ -6,7 +6,7 @@
 /*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 10:24:53 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/17 10:25:51 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/02 03:16:50 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	check_if_llong_helper(char *nbr, int *index, char **ll)
 	j = i;
 	while (nbr[i])
 	{
-		if (nbr[i] < *(ll)[j])
+		if (nbr[i] < (*ll)[j])
 			return (0);
-		else if (nbr[i++] > *(ll)[j++])
+		else if (nbr[i++] > (*ll)[j++])
 			return (1);
 	}
 	return (0);

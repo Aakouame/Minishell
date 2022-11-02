@@ -6,7 +6,7 @@
 /*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 17:25:55 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/27 13:45:05 by akouame          ###   ########.fr       */
+/*   Updated: 2022/11/01 12:26:08 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void check_if_exist_len_env(t_data *data, char *tmp)
 
 static void count_len_of_expand(t_data *data, char *value)
 {
-    char *dollar;
+    //char *dollar;
     char *tmp;
     int     j;
 
@@ -76,7 +76,7 @@ static void count_len_of_expand(t_data *data, char *value)
         data->exp_len += 2;
         data->i++;
     }
-    else
+    else if (ft_acceptable_char(value[data->i]))
     {
         while (value[data->i] && ft_acceptable_char(value[data->i]))
         {
@@ -87,6 +87,8 @@ static void count_len_of_expand(t_data *data, char *value)
         dup_from_addr_to_other(tmp, &value[data->i - j], &value[data->i]);
         check_if_exist_len_env(data, tmp);
     }
+    else
+        data->exp_len++;
 }
 
 int expand_len(t_data *data, char *value)
