@@ -6,7 +6,7 @@
 /*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:02:51 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/02 22:56:29 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/02 21:54:14 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ static void	plug_redirection_in_node(t_data *data)
 
 static void	child_process_of_pipeline(t_data *data, t_cmd *trav)
 {
-	t_cmd	*dd;
-
 	signal(SIGINT, SIG_DFL);
 	if (check_builtin(data, &trav->cmd[0]))
 	{
@@ -80,32 +78,13 @@ static void	child_process_of_pipeline(t_data *data, t_cmd *trav)
 		dup2(trav->f_out, STDOUT_FILENO);
 		dup2(trav->f_in, STDIN_FILENO);
 
-		close(data->s_stdout);
-		int i = 3;
-		while(i < ((data->size_cmd -1 ) * 2) + 3)
-			close (i++);
-		//while (1);
-		//dd = data->v_cmd;
-		//while (dd)
-		//{
-		//	close(4);
-		//	close(5);
-		//	close(6);
-		//	if (trav->f_in != trav->tab_pipe[1])
-		//		close(trav->tab_pipe[1]);
-		//	if (trav->f_out != trav->tab_pipe[0])
-		//		close(trav->tab_pipe[0]);
-		//	dd = dd->next;
-		//}
-			//close(trav->tab_pipe[1]);
-			//close(trav->tab_pipe[0]);
-		//close(trav->tab_pipe[1]);
-
+		//close(data->s_stdout);
+		close(trav->tab_pipe[0]);
+		close(trav->tab_pipe[1]);
 		//if (trav->f_in > 0)
 		//	close(trav->f_in);
 		//if (trav->f_out > 1)
 		//	close(trav->f_out);
-		//while(1);
 		execute_sys_cmd(data, trav);
 	}
 }
@@ -122,12 +101,11 @@ void	pipeline(t_data *data)
 		return ;
 	}
 	plug_redirection_in_node(data);
-	//trav = data->v_cmd;
-	//while (trav)
-	//{
-	//	printf("in = %d && out = %d here pipe 0 == %d %d\n", trav->f_in, trav->f_out, trav->tab_pipe[0], trav->tab_pipe[1]);
-	//	trav = trav->next;
-	//}
+	while (trav)
+	{
+		printf("in = %d && out = %d here pipe 0 == %d %d\n", trav->pipe[0], trav->pipe[1]);
+		trav = trav->next;
+	}
 	trav = data->v_cmd;
 	p_trav = 0;
 	while (trav)

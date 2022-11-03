@@ -6,7 +6,7 @@
 /*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:22:17 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/02 05:09:11 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/02 22:58:27 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	error_close_pipes(t_data *data)
 
 	cmd = data->v_cmd;
 	while (cmd)
-	{
+{
 		if (cmd->tab_pipe)
 		{
 			close(cmd->tab_pipe[0]);
