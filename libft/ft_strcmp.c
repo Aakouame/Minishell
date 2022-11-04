@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkaddour <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 14:09:21 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/16 10:05:55 by hkaddour         ###   ########.fr       */
+/*   Created: 2022/09/29 12:03:37 by hkaddour          #+#    #+#             */
+/*   Updated: 2022/09/29 12:04:07 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	int		i;
-	char	*ptr;
-
-	i = 0;
-	ptr = ft_calloc(ft_strlen(s) + 1, sizeof(char));
-	while (s[i])
+	while (*s1 == *s2 && *s1 && *s2)
 	{
-		ptr[i] = s[i];
-		i++;
+		s1++;
+		s2++;
 	}
-	return (ptr);
+	return ((unsigned char)*s1 - (unsigned char)*s2);
 }

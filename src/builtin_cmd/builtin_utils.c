@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkaddour <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 14:09:21 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/16 10:05:55 by hkaddour         ###   ########.fr       */
+/*   Created: 2022/10/07 09:38:44 by hkaddour          #+#    #+#             */
+/*   Updated: 2022/10/16 12:34:48 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
-char	*ft_strdup(const char *s)
+#include "../../include/minishell.h"
+
+void	free_sp(t_data *data, char **sp)
 {
-	int		i;
-	char	*ptr;
+	int	i;
 
 	i = 0;
-	ptr = ft_calloc(ft_strlen(s) + 1, sizeof(char));
-	while (s[i])
-	{
-		ptr[i] = s[i];
-		i++;
-	}
-	return (ptr);
+	add_node_p_running(data, sp);
+	while (sp[i])
+		add_node_p_running(data, sp[i++]);
 }

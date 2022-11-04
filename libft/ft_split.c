@@ -6,7 +6,7 @@
 /*   By: hkaddour <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 16:29:46 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/07/05 16:48:56 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/10/17 09:18:28 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -16,12 +16,12 @@ static int	ft_strcount(char *s, char c)
 	int	len;
 
 	len = 0;
-	while (*s != '\0')
+	while (*s != 0)
 	{
 		if (*s != c && *s)
 		{
 			len++;
-			while (*s != '\0' && *s != c)
+			while (*s != 0 && *s != c)
 				s++;
 			continue ;
 		}
@@ -38,12 +38,10 @@ static char	*ft_alloc_word_by_word(char *s, char c)
 	len = 0;
 	while (s[len] != c && s[len])
 		len++;
-	ptr = (char *) malloc(sizeof(char) * len + 1);
+	ptr = ft_calloc(len + 1, sizeof(char));
 	while (*s != c && *s)
-	{
 		*ptr++ = *s++;
-	}
-	*ptr = '\0';
+	*ptr = 0;
 	return (ptr - len);
 }
 
@@ -57,9 +55,7 @@ static void	ft_alloc_all(char *str, char c, int w, char **ptr)
 			if (!ptr)
 			{
 				while (w >= 0)
-				{
 					free(ptr[w--]);
-				}
 				free(ptr);
 			}
 			while (*str != c && *str)
@@ -68,7 +64,7 @@ static void	ft_alloc_all(char *str, char c, int w, char **ptr)
 		}
 		str++;
 	}
-	ptr[w] = NULL;
+	ptr[w] = 0;
 }
 
 char	**ft_split(char const *s, char c)
@@ -77,13 +73,11 @@ char	**ft_split(char const *s, char c)
 	char	**ptr;
 	char	*str;
 
-	w = 0;
 	if (!s)
 		return (NULL);
+	w = 0;
 	str = (char *) s;
-	ptr = (char **) malloc(sizeof(char *) * (ft_strcount(str, c) + 1));
-	if (!ptr)
-		return (NULL);
+	ptr = ft_calloc((ft_strcount(str, c) + 1), sizeof(char *));
 	ft_alloc_all(str, c, w, ptr);
 	return (ptr);
 }

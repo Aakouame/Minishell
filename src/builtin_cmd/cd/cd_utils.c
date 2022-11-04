@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkaddour <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 14:09:21 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/16 10:05:55 by hkaddour         ###   ########.fr       */
+/*   Created: 2022/11/04 03:11:12 by hkaddour          #+#    #+#             */
+/*   Updated: 2022/11/04 03:12:52 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
-char	*ft_strdup(const char *s)
+#include "../../../include/minishell.h"
+
+void	execute_cd_swap_init(t_data *data, t_env **pwd, t_env **old)
 {
-	int		i;
-	char	*ptr;
-
-	i = 0;
-	ptr = ft_calloc(ft_strlen(s) + 1, sizeof(char));
-	while (s[i])
-	{
-		ptr[i] = s[i];
-		i++;
-	}
-	return (ptr);
+	*pwd = getenv_addr(data, "PWD");
+	*old = getenv_addr(data, "OLDPWD");
 }

@@ -1,7 +1,0 @@
-export "okay"hey"duh" in one = okayheyduh
-export "okay" hey "duh" = okay & hey & duh
-export
-export
-export
--L/usr/local/lib -I/usr/local/include -lreadline
-

@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkaddour <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 14:09:21 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/16 10:05:55 by hkaddour         ###   ########.fr       */
+/*   Created: 2022/10/06 05:28:21 by hkaddour          #+#    #+#             */
+/*   Updated: 2022/10/07 11:02:03 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
-char	*ft_strdup(const char *s)
+#include "../../include/minishell.h"
+
+void	sig_c(int c)
 {
-	int		i;
-	char	*ptr;
-
-	i = 0;
-	ptr = ft_calloc(ft_strlen(s) + 1, sizeof(char));
-	while (s[i])
-	{
-		ptr[i] = s[i];
-		i++;
-	}
-	return (ptr);
+	printf("\n");
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
 }

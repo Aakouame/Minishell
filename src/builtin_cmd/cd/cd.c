@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkaddour <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/05 14:09:21 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/16 10:05:55 by hkaddour         ###   ########.fr       */
+/*   Created: 2022/09/07 15:22:04 by hkaddour          #+#    #+#             */
+/*   Updated: 2022/10/13 14:53:28 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
-char	*ft_strdup(const char *s)
+#include "../../../include/minishell.h"
+
+void	cd_cmd(t_data *data, t_cmd *node)
 {
-	int		i;
-	char	*ptr;
-
-	i = 0;
-	ptr = ft_calloc(ft_strlen(s) + 1, sizeof(char));
-	while (s[i])
+	if (node->cmd[1])
 	{
-		ptr[i] = s[i];
-		i++;
+		if (node->cmd[1][0] == '-')
+		{
+			cd_between_pwd_and_oldpwd(data, node->cmd[1]);
+			return ;
+		}
 	}
-	return (ptr);
+	cd_everywhere_at_once(data, node->cmd[1]);
 }
