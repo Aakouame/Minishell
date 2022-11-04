@@ -6,7 +6,7 @@
 /*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 10:24:18 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/04 04:25:59 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/04 04:43:47 by hkaddour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,11 @@ typedef struct s_data
 	t_env		*l_env;
 	t_cmd		*v_cmd;
 	t_cmd		*trav_cmd;
-	t_free	*p_die;
-	t_free	*p_running;
-	t_token	*t_join;
-	t_token	*trav;
-	t_token	*t_token;
+	t_free		*p_die;
+	t_free		*p_running;
+	t_token		*t_join;
+	t_token		*trav;
+	t_token		*t_token;
 }	t_data;
 
 /******* Function of tokenizer *********/
@@ -132,27 +132,26 @@ void	tokenizer(t_data *data);
 /******* Function of tokenizer token identifier *********/
 void	dup_from_addr_to_other(char *ptr, char *begin, char *end);
 void	token_linker(t_data *data, t_token *trav);
-int	unacceptable_token(t_data *data, char c);
-int	is_pipe(t_data *data, char *n_line);
-int	is_space(t_data *data, char *n_line);
-int	is_i_redirection(t_data *data, char *n_line);
-int	is_o_redirection(t_data *data, char *n_line);
-int	is_dolla(t_data *data, char *n_line);
-int	is_s_quote(t_data *data, char *n_line);
-int	is_d_quote(t_data *data, char *n_line);
-int	is_word(t_data *data, char *n_line);
+int		unacceptable_token(t_data *data, char c);
+int		is_pipe(t_data *data, char *n_line);
+int		is_space(t_data *data, char *n_line);
+int		is_i_redirection(t_data *data, char *n_line);
+int		is_o_redirection(t_data *data, char *n_line);
+int		is_dolla(t_data *data, char *n_line);
+int		is_s_quote(t_data *data, char *n_line);
+int		is_d_quote(t_data *data, char *n_line);
+int		is_word(t_data *data, char *n_line);
 
 /******* Function of join token ************/
 void	allocate_join_token(t_data *data);
 void	join_t_token(t_data *data);
 
 /******* Function of lexer ************/
-int	lexer_pt2(t_data *data);
-int	word_lexer(char *token);
-int	pipe_lexer(char *token);
-int	quotes_lexer(char quote, char *token);
-int	redirection_lexer(char redirect, char *token);
-
+int		lexer_pt2(t_data *data);
+int		word_lexer(char *token);
+int		pipe_lexer(char *token);
+int		quotes_lexer(char quote, char *token);
+int		redirection_lexer(char redirect, char *token);
 
 /******* Function of parser ************/
 void	heredoc_implement(t_data *data, char *det);
@@ -163,7 +162,6 @@ int		count_cmd(t_data *data);
 void	parsing_get_len_alloc_cmd_arr(t_data *data, int *len, int *red_len);
 void	parser(t_data *data);
 
-
 /**** Function of one_cmd execution ****/
 void	close_fds_of_pipeline(t_cmd *trav);
 int		pipeline_helper(t_data *data);
@@ -172,21 +170,20 @@ void	error_close_pipes(t_data *data);
 void	pipeline_parent(t_data *data);
 void	pipeline(t_data *data);
 void	check_if_x_ok(t_data *data, t_cmd *cmd, char *path);
-void  fds_closer(t_cmd *cmd, t_red *red);
-void  run_one_cmd(t_data *data);
-void  exit_status(int *exit_stat, int status);
+void	fds_closer(t_cmd *cmd, t_red *red);
+void	run_one_cmd(t_data *data);
+void	exit_status(int *exit_stat, int status);
 int		find_slash(char *cmd);
 int		check_redirection(t_data *data, t_cmd *cmd);
-void  run_one_cmd(t_data *data);
-void  execute_sys_cmd(t_data *data, t_cmd *cmd);
-void  execution(t_data *data);
-
+void	run_one_cmd(t_data *data);
+void	execute_sys_cmd(t_data *data, t_cmd *cmd);
+void	execution(t_data *data);
 
 /**** Function of builtin cmd **********/
 void	free_sp(t_data *data, char **sp);
 void	cd_cmd(t_data *data, t_cmd *node);
 void	echo_cmd(t_data *data, t_cmd *trav);
-void  pwd_cmd(t_data *data);
+void	pwd_cmd(t_data *data);
 void	env_cmd(t_data *data, t_cmd *cmd);
 void	export_cmd(t_data *data, t_cmd *trav_c);
 void	unset_cmd(t_data *data, t_cmd *trav_c);
@@ -194,43 +191,37 @@ void	exit_cmd(t_data *data, t_cmd *trav);
 int		check_builtin(t_data *data, char **cmd);
 void	builtin_cmd(t_data *data, t_cmd *node);
 
-
 /**** Function of cd **********/
-void  cd_between_pwd_and_oldpwd(t_data *data, char *cmd);
-void  cd_everywhere_at_once(t_data *data, char *cmd);
-void  change_oldpwd(t_data *data);
-void  change_pwd(t_data *data, char *path);
-void  old_pwd_alloc(t_data *data);
+void	cd_between_pwd_and_oldpwd(t_data *data, char *cmd);
+void	cd_everywhere_at_once(t_data *data, char *cmd);
+void	change_oldpwd(t_data *data);
+void	change_pwd(t_data *data, char *path);
+void	old_pwd_alloc(t_data *data);
 void	execute_cd_swap_init(t_data *data, t_env **pwd, t_env **old);
-
 
 /**** Function of env **********/
 void	env_shlvl_helper(t_data *data, t_env *env);
-void  sort_env(t_data *data);
+void	sort_env(t_data *data);
 t_env	*getenv_addr(t_data *data, char *sec);
 void	env_double_ptr(t_data *data);
-void  get_env(t_data *data);
-
+void	get_env(t_data *data);
 
 /**** Function of export **********/
-int 	check_export_error(t_data *data, char *cmd);
-int 	if_exist_or_not(t_data *data, char *cmd);
-int 	check_if_equal_or_wrd(char *cmd);
-int 	dup_opt_wrd(t_data *data, t_env *env, char *cmd);
-int 	check_existence(t_data *data, char *cmd, int hold, t_env *env);
-void  dup_opt_equal_helper(t_env **env, char *cmd, int *hold);
-
+int		check_export_error(t_data *data, char *cmd);
+int		if_exist_or_not(t_data *data, char *cmd);
+int		check_if_equal_or_wrd(char *cmd);
+int		dup_opt_wrd(t_data *data, t_env *env, char *cmd);
+int		check_existence(t_data *data, char *cmd, int hold, t_env *env);
+void	dup_opt_equal_helper(t_env **env, char *cmd, int *hold);
 
 /**** Function of exit *************/
-int	check_if_llong_helper(char *nbr, int *index, char **ll);
-
+int		check_if_llong_helper(char *nbr, int *index, char **ll);
 
 /******* Function of free *********/
 void	free_data_running_process(t_data *data, int chk);
 void	free_data_die_process(t_data *data);
 void	add_node_p_running(t_data *data, void *addr);
 void	add_node_p_die(t_data *data, void *addr);
-
 
 /******* Function of shell *********/
 void	process_kill(t_data *data);
@@ -239,7 +230,6 @@ void	*allocation(t_data *data, size_t count, size_t size, int chk);
 char	*add_join(t_data *data, char *s, char *s1, int chk);
 char	*add_dup(t_data *data, char *s, int chk);
 void	sig_c(int c);
-
 
 /******* Function of error *********/
 void	error_alloc(void);
