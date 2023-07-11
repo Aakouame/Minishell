@@ -6,7 +6,7 @@
 /*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 22:39:52 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/04 10:44:02 by akouame          ###   ########.fr       */
+/*   Updated: 2022/11/04 11:17:00 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static void	execute_cd_swap_helper(t_data *data, t_env *pwd, char *val)
 {
-	data->chk_dolla = 0;
+	data->exit_status = 0;
 	if (chdir(val) != 0)
 	{
-		data->chk_dolla = 1;
+		data->exit_status = 1;
 		stdanred_error("cd: ", 0, 1);
 		stdanred_error(": No such file or directory\n", pwd->value, 0);
 	}
@@ -33,7 +33,7 @@ static void	execute_cd_swap_old_pwd(t_data *data)
 	val = old->value;
 	if (access(val, F_OK) != 0)
 	{
-		data->chk_dolla = 1;
+		data->exit_status = 1;
 		stdanred_error("cd: ", 0, 1);
 		stdanred_error(": No such file or directory\n", val, 0);
 		return ;
@@ -111,7 +111,7 @@ void	cd_between_pwd_and_oldpwd(t_data *data, char *cmd)
 	}
 	else
 	{
-		data->chk_dolla = 1;
+		data->exit_status = 1;
 		stdanred_error(&cmd[1], "cd: -", 1);
 		stdanred_error(": invalid option\n", 0, 0);
 	}

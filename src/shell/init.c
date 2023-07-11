@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 05:15:39 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/04 04:25:47 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:19:39 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,10 @@ void	init_shell_elem(t_data *data, char **av, char **env)
 	data->args = av;
 	data->old_pwd_make = 0;
 	data->chk_redct_exist = 0;
-	data->chk_dolla = 0;
+	data->exit_status = 0;
 	data->env_exec = 0;
 	data->v_cmd = 0;
 	data->t_token = 0;
-	data->env_exec = 0;
 	data->p_die = 0;
 	data->p_running = 0;
 	data->p_die = allocation(data, 1, sizeof(t_free), 0);

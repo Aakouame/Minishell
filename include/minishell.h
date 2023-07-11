@@ -6,7 +6,7 @@
 /*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 10:24:18 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/04 04:43:47 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/04 22:56:22 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,7 @@ typedef struct s_data
 	int			qot_aftr_dolla;
 	int			tokn_hrdoc;
 	int			i_line;
-	int			chk_hrdoc;
-	int			chk_dolla;
+	int			exit_status;
 	int			chk_q_hrdoc;
 	int			hrdoc_fd[2];
 	int			chk_hrdoc_exit;
@@ -178,6 +177,8 @@ int		check_redirection(t_data *data, t_cmd *cmd);
 void	run_one_cmd(t_data *data);
 void	execute_sys_cmd(t_data *data, t_cmd *cmd);
 void	execution(t_data *data);
+void	pipeline_work(t_data *data, t_cmd *trav, t_cmd *p_trav);
+void	child_process_of_pipeline(t_data *data, t_cmd *trav);
 
 /**** Function of builtin cmd **********/
 void	free_sp(t_data *data, char **sp);
@@ -211,7 +212,7 @@ int		check_export_error(t_data *data, char *cmd);
 int		if_exist_or_not(t_data *data, char *cmd);
 int		check_if_equal_or_wrd(char *cmd);
 int		dup_opt_wrd(t_data *data, t_env *env, char *cmd);
-int		check_existence(t_data *data, char *cmd, int hold, t_env *env);
+int		check_existence(t_data *data, char *cmd, int hold);
 void	dup_opt_equal_helper(t_env **env, char *cmd, int *hold);
 
 /**** Function of exit *************/

@@ -6,7 +6,7 @@
 /*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 17:25:11 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/04 02:19:16 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:17:00 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	allocate_status_and_program(t_data *data, char *value)
 	}
 	else
 	{
-		tmp = ft_itoa(data->chk_dolla);
+		tmp = ft_itoa(data->exit_status);
 		add_node_p_running(data, tmp);
 		data->j += ft_strlcpy(&data->buff_expnd[data->j], tmp, \
 				ft_strlen(tmp) + 1);

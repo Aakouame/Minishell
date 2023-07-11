@@ -6,7 +6,7 @@
 /*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 17:25:55 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/04 02:23:15 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:17:00 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	count_len_status_and_program(t_data *data, char *value)
 		data->exp_len += ft_strlen(ft_strrchr(data->args[0], '/') + 1);
 	else
 	{
-		tmp = ft_itoa(data->chk_dolla);
+		tmp = ft_itoa(data->exit_status);
 		add_node_p_running(data, tmp);
 		data->exp_len += ft_strlen(tmp);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 17:15:12 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/04 03:16:13 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/04 14:43:27 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	echo_cmd(t_data *data, t_cmd *trav)
 		return ;
 	}
 	i = chk;
-	data->chk_dolla = 0;
+	data->exit_status = 0;
 	while (trav->cmd[i])
 	{
 		echo_helper(data, trav, i);

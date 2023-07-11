@@ -6,7 +6,7 @@
 /*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 22:02:51 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/04 03:21:35 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/04 22:56:17 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	plug_redirection_in_node(t_data *data)
 	}
 }
 
-static void	child_process_of_pipeline(t_data *data, t_cmd *trav)
+void	child_process_of_pipeline(t_data *data, t_cmd *trav)
 {
 	signal(SIGINT, SIG_DFL);
 	if (check_builtin(data, &trav->cmd[0]))
@@ -79,7 +79,6 @@ static void	child_process_of_pipeline(t_data *data, t_cmd *trav)
 
 void	pipeline(t_data *data)
 {
-	int		pid;
 	t_cmd	*trav;
 	t_cmd	*p_trav;
 
@@ -88,19 +87,6 @@ void	pipeline(t_data *data)
 	plug_redirection_in_node(data);
 	trav = data->v_cmd;
 	p_trav = 0;
-	while (trav)
-	{
-		pid = fork();
-		if (pid < 0)
-			error_fork(data);
-		if (pid == 0)
-			child_process_of_pipeline(data, trav);
-		if (p_trav)
-			close(p_trav->tab_pipe[1]);
-		close(trav->tab_pipe[0]);
-		close_fds_of_pipeline(trav);
-		p_trav = trav;
-		trav = trav->next;
-	}
+	pipeline_work(data, trav, p_trav);
 	pipeline_parent(data);
 }

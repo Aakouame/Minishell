@@ -6,13 +6,13 @@
 /*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:22:53 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/03 19:26:58 by akouame          ###   ########.fr       */
+/*   Updated: 2022/11/04 11:41:22 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-int	pwd_cmd_helper(t_data *data, char **cmd)
+static int	pwd_cmd_helper(char **cmd)
 {
 	int	i;
 	int	j;
@@ -49,7 +49,7 @@ void	pwd_cmd(t_data *data)
 	cmd = &data->v_cmd->cmd[1];
 	if (cmd)
 	{
-		if (pwd_cmd_helper(data, cmd))
+		if (pwd_cmd_helper(cmd))
 			return ;
 	}
 	printf("%s\n", data->pwd_of_mysys);

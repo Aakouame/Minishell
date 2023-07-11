@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 15:54:38 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/17 09:19:47 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/04 19:09:06 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-static char	*if_upper_lower_them(t_data *data, char *cmd)
-{
-	int		i;
-	char	*ptr;
-
-	i = 0;
-	ptr = allocation(data, ft_strlen(cmd) + 1, sizeof(char), 1);
-	while (cmd[i])
-	{
-		if (cmd[i] >= 'A' && cmd[i] <= 'Z')
-			ptr[i] = cmd[i] + 32;
-		else
-			ptr[i] = cmd[i];
-		i++;
-	}
-	return (ptr);
-}
 
 static int	cmd_only_exec_lower(t_data *data, char *cmd)
 {
@@ -71,17 +53,13 @@ static int	check_builtin_helper(t_data *data, char *cmd)
 int	check_builtin(t_data *data, char **cmd)
 {
 	int		i;
-	char	*b_cmd;
 
 	if (cmd_only_exec_lower(data, *cmd))
 		return (1);
 	i = 0;
-	b_cmd = *cmd;
-	while (!(b_cmd[i] >= 'A' && b_cmd[i] <= 'Z') && b_cmd[i])
-		i++;
-	if (b_cmd[i])
-		*cmd = if_upper_lower_them(data, *cmd);
-	if (check_builtin_helper(data, *cmd))
+	while (cmd[0][i])
+		ft_tolower(cmd[0][i++]);
+	if (check_builtin_helper(data, cmd[0]))
 		return (1);
 	return (0);
 }

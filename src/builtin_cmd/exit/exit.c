@@ -6,7 +6,7 @@
 /*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:38:38 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/04 03:14:29 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:17:00 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	exit_cmd(t_data *data, t_cmd *trav)
 				exit_number(data, trav->cmd[1]);
 			else
 			{
-				data->chk_dolla = 1;
+				data->exit_status = 1;
 				ft_putstr_fd("exit\nminishell: exit: too many arguments\n", 2);
 			}
 		}

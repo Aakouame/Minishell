@@ -6,7 +6,7 @@
 /*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 12:45:39 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/04 02:04:39 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:17:00 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	tokenizer(t_data *data)
 		{
 			if (data->error_lexer)
 			{
-				data->chk_dolla = 258;
+				data->exit_status = 258;
 				return ;
 			}
 		}

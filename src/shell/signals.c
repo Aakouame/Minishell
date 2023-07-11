@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 05:28:21 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/10/07 11:02:03 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:38:25 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	sig_c(int c)
 {
+	(void) c;
 	printf("\n");
 	rl_on_new_line();
 	rl_replace_line("", 0);

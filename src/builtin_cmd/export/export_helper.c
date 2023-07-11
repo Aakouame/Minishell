@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_helper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 01:44:45 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/04 03:35:33 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/04 11:39:43 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	check_existence_helper(t_data *data, char *cmd, char *chk, int hold)
 	return (0);
 }
 
-int	check_existence(t_data *data, char *cmd, int hold, t_env *env)
+int	check_existence(t_data *data, char *cmd, int hold)
 {
 	int		i;
 	char	*chk;

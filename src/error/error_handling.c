@@ -6,7 +6,7 @@
 /*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 05:22:11 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/03 20:06:02 by akouame          ###   ########.fr       */
+/*   Updated: 2022/11/04 22:03:21 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ void	error_alloc(void)
 
 void	error_fork(t_data *data)
 {
-	data->chk_dolla = 1;
+	data->exit_status = 1;
 	ft_putstr_fd("minishell: fork: Resource temporarily unavailable\n", 2);
 }
 
 void	error_pipe(t_data *data, char *msg)
 {
-	data->chk_dolla = 1;
+	data->exit_status = 1;
 	stdanred_error("\n", msg, 0);
 }
 
 void	error_cd(t_data *data, char *msg)
 {
-	data->chk_dolla = 1;
+	data->exit_status = 1;
 	ft_putstr_fd(msg, 2);
 }
 

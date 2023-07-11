@@ -6,7 +6,7 @@
 /*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 12:11:41 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/03 19:42:50 by akouame          ###   ########.fr       */
+/*   Updated: 2022/11/04 11:17:00 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ void	env_cmd(t_data *data, t_cmd *cmd)
 	trav = data->l_env;
 	if (cmd->cmd[1] != 0)
 	{
-		data->chk_dolla = 1;
+		data->exit_status = 1;
 		ft_putstr_fd("env: ", 2);
 		stdanred_error(": No such file or directory\n", cmd->cmd[1], 0);
 	}
 	else
 	{
-		data->chk_dolla = 0;
+		data->exit_status = 0;
 		while (trav)
 		{
 			if (!trav->value[0])

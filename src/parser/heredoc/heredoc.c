@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkaddour <hkaddour@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 08:40:06 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/04 02:11:57 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:02:45 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	heredoc_sig(int c)
 {
+	(void) c;
 	printf("\n");
 	exit(1);
 }

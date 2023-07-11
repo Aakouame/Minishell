@@ -6,7 +6,7 @@
 /*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 10:32:56 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/04 03:49:56 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:07:25 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	parser(t_data *data)
 		if (data->chk_hrdoc_exit == 1)
 		{
 			data->error_lexer = 1;
+			data->exit_status = 1;
 			return ;
 		}
 		if (!data->trav)

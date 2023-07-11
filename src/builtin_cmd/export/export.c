@@ -6,7 +6,7 @@
 /*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 13:52:18 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/04 11:08:47 by akouame          ###   ########.fr       */
+/*   Updated: 2022/11/04 11:40:07 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	dup_opt_equal(t_data *data, t_env *env, char *cmd)
 		hold = ft_strcspn(cmd, "+");
 	else
 		hold = ft_strcspn(cmd, "=");
-	if (check_existence(data, cmd, hold, env))
+	if (check_existence(data, cmd, hold))
 		return (0);
 	env->sec = allocation(data, hold + 1, sizeof(char), 0);
 	dup_opt_equal_helper(&env, cmd, &hold);
@@ -83,7 +83,7 @@ static void	export_cmd_helper(t_data *data, t_env **trav_e, \
 	}
 	else
 	{
-		data->chk_dolla = 1;
+		data->exit_status = 1;
 		stdanred_error("export: `", 0, 1);
 		stdanred_error("': not a valid identifier\n", trav_c->cmd[i], 0);
 	}

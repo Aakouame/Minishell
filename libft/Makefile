@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hkaddour <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: akouame <akouame@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/04 20:10:00 by hkaddour          #+#    #+#              #
-#    Updated: 2022/10/02 01:14:23 by hkaddour         ###   ########.fr        #
+#    Updated: 2022/11/04 11:59:25 by akouame          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-cc = gcc
-header = libft.h
+CC = cc
+HEADER = libft.h
 CFLAGS = -Wall -Wextra -Werror
-srcs =	ft_atoi.c \
+SRCS =	ft_atoi.c \
 		ft_putnbr_fd.c \
 		ft_strlen.c \
 		ft_bzero.c \
@@ -51,21 +51,19 @@ srcs =	ft_atoi.c \
 		ft_strcmp.c \
 		ft_strcspn.c
 
-objs = $(srcs:.c=.o)
-BGreen=\033[1;32m
+OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
 
-%.o: %.c
-	@/bin/echo -n "."
-	@$(cc) $(CFLAGS) -c $^
-#@$(cc) $(CFLAGS) -c $^ -I $(header)
-
-$(NAME): $(objs)
+$(NAME): $(OBJS)
 	@ar -rc $@ $^
+	
+%.o: %.c $(HEADER)
+	@/bin/echo -n "."
+	@$(CC) $(CFLAGS) -c $< -I $(HEADER)
 
 clean:
-	@rm -rf $(objs)
+	@rm -rf $(OBJS)
 
 fclean : clean
 	@rm -rf $(NAME)

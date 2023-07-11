@@ -6,7 +6,7 @@
 /*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 16:18:49 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/03 19:29:45 by akouame          ###   ########.fr       */
+/*   Updated: 2022/11/04 11:42:14 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	find_that_element(t_data *data, char *elem)
 	}
 }
 
-int	unset_error_checking(t_data *data, char *cmd)
+static int	unset_error_checking(char *cmd)
 {
 	int	i;
 
@@ -64,11 +64,11 @@ void	unset_cmd(t_data *data, t_cmd *trav_c)
 		return ;
 	while (trav_c->cmd[i])
 	{
-		if (!unset_error_checking(data, trav_c->cmd[i]))
+		if (!unset_error_checking(trav_c->cmd[i]))
 			find_that_element(data, trav_c->cmd[i]);
 		else
 		{
-			data->chk_dolla = 1;
+			data->exit_status = 1;
 			stdanred_error("unset: `", 0, 1);
 			stdanred_error("': not a valid identifier\n", trav_c->cmd[i], 0);
 		}

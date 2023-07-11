@@ -6,16 +6,15 @@
 #    By: akouame <akouame@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 19:49:34 by hkaddour          #+#    #+#              #
-#    Updated: 2022/11/04 03:23:29 by hkaddour         ###   ########.fr        #
+#    Updated: 2022/11/04 11:59:32 by akouame          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = cc
 HEADER = include/minishell.h
-FLAGS = -g
+FLAGS = -Wextra -Wall -Werror
 LIB = libft/libft.a
-OFILE = ofiles
 READLINE = $(shell brew --prefix  readline)
 SRC = $(addprefix src/, shell/main.c shell/init.c shell/signals.c shell/shell_utils.c \
 			free/free_collector.c error/error_handling.c \
@@ -43,23 +42,24 @@ SRC = $(addprefix src/, shell/main.c shell/init.c shell/signals.c shell/shell_ut
 OBJS = $(SRC:.c=.o)
 
 all: $(NAME)
-
+	
 $(NAME): $(LIB) $(OBJS)
-	$(CC) $(OBJS) $(LIB) -o $(NAME) -L $(READLINE)/lib -lreadline
+	@$(CC) $(OBJS) $(LIB) -o $(NAME) -L $(READLINE)/lib -lreadline
 
 %.o: %.c $(HEADER)
-	$(CC) -I $(READLINE)/include $(FLAGS) -c $< -o $@ -I $(HEADER)
+	@/bin/echo -n "."
+	@$(CC) -I $(READLINE)/include $(FLAGS) -c $< -o $@ -I $(HEADER)
 
 $(LIB):
-	make -C ./libft
+	@make -C ./libft
 
 clean:
 	@make fclean -C ./libft
-	@rm -rf $(OFILE)
-
+	@rm -rf $(OBJS)
+	
 fclean:
 	@make fclean -C ./libft
-	@rm -rf $(NAME) $(OBJS) *.dSYM
+	@rm -rf $(NAME) $(OBJS)
 
 re: fclean all
 

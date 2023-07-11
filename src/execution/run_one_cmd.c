@@ -6,7 +6,7 @@
 /*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 04:54:30 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/04 03:06:51 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/04 22:40:09 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	execute_sys_cmd(t_data *data, t_cmd *cmd)
 	env = getenv_addr(data, "PATH");
 	if (!env)
 	{
-		data->chk_dolla = 1;
+		data->exit_status = 1;
 		stdanred_error(": No such file or directory\n", cmd->cmd[0], 1);
 		exit(127);
 	}
@@ -76,42 +76,48 @@ void	execute_sys_cmd(t_data *data, t_cmd *cmd)
 	exec_cmd_path(data, cmd, sp);
 }
 
-static void	child_process_run_one_cmd(t_data *data)
+static void	child_process_run_one_cmd(t_data *data, int pid)
 {
-	if (check_builtin(data, &data->v_cmd->cmd[0]))
-		exit(0);
-	if (data->chk_redct_exist == 1)
+	if (pid == 0)
 	{
-		dup2(data->v_cmd->f_in, STDIN_FILENO);
-		dup2(data->v_cmd->f_out, STDOUT_FILENO);
+		if (data->v_cmd->cmd[0])
+		{
+			if (check_builtin(data, &data->v_cmd->cmd[0]))
+				exit(0);
+			if (data->chk_redct_exist == 1)
+			{
+				dup2(data->v_cmd->f_in, STDIN_FILENO);
+				dup2(data->v_cmd->f_out, STDOUT_FILENO);
+			}
+			execute_sys_cmd(data, data->v_cmd);
+		}
 	}
-	execute_sys_cmd(data, data->v_cmd);
 }
 
 void	run_one_cmd(t_data *data)
 {
 	int	pid;
 	int	status;
+	int	stdout;
 
 	pid = fork();
 	if (pid < 0)
 		error_fork(data);
-	if (pid == 0)
-	{
-		if (data->v_cmd->cmd[0])
-			child_process_run_one_cmd(data);
-	}
+	child_process_run_one_cmd(data, pid);
 	if (pid >= 1)
 	{
 		signal(SIGINT, SIG_IGN);
 		waitpid(pid, &status, 0);
-		exit_status(&data->chk_dolla, status);
+		exit_status(&data->exit_status, status);
 		if (data->v_cmd->cmd[0])
 		{
 			if (check_builtin(data, &data->v_cmd->cmd[0]))
 			{
+				stdout = dup(1);
 				dup2(data->v_cmd->f_out, STDOUT_FILENO);
 				builtin_cmd(data, data->v_cmd);
+				dup2(stdout, STDOUT_FILENO);
+				close(stdout);
 			}
 		}
 	}

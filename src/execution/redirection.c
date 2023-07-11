@@ -6,7 +6,7 @@
 /*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 04:55:08 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/04 03:06:17 by hkaddour         ###   ########.fr       */
+/*   Updated: 2022/11/04 15:58:35 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	red_o_trnc(t_data *data, t_red *red, t_cmd *cmd, int *fd)
 		}
 		else
 		{
-			data->chk_dolla = 126;
+			data->exit_status = 126;
 			stdanred_error(": Permission denied\n", red->file, 1);
 			return (1);
 		}
@@ -51,7 +51,7 @@ static int	red_o_apend(t_data *data, t_red *red, t_cmd *cmd, int *fd)
 		}
 		else
 		{
-			data->chk_dolla = 126;
+			data->exit_status = 126;
 			stdanred_error(": Permission denied\n", red->file, 1);
 			return (1);
 		}
@@ -78,14 +78,14 @@ static int	red_i_trnc(t_data *data, t_red *red, t_cmd *cmd, int *fd)
 		}
 		else
 		{
-			data->chk_dolla = 126;
+			data->exit_status = 126;
 			stdanred_error(": Permission denied\n", red->file, 1);
 			return (1);
 		}
 	}
 	else
 	{
-		data->chk_dolla = 1;
+		data->exit_status = 1;
 		stdanred_error(": No such file or directory\n", red->file, 1);
 		return (1);
 	}

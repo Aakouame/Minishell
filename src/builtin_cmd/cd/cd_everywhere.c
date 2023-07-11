@@ -6,7 +6,7 @@
 /*   By: akouame <akouame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 22:53:53 by hkaddour          #+#    #+#             */
-/*   Updated: 2022/11/03 20:00:54 by akouame          ###   ########.fr       */
+/*   Updated: 2022/11/04 11:17:00 by akouame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	execute_cmd_cd(t_data *data, char *cmd)
 
 	if (chdir(cmd) != 0)
 	{
-		data->chk_dolla = 1;
+		data->exit_status = 1;
 		stdanred_error("cd: ", 0, 1);
 		stdanred_error(": No such file or directory\n", cmd, 0);
 		return ;
@@ -66,7 +66,7 @@ static void	execute_cmd_cd(t_data *data, char *cmd)
 		old_pwd_alloc(data);
 	change_pwd(data, path);
 	change_oldpwd(data);
-	data->chk_dolla = 0;
+	data->exit_status = 0;
 }
 
 void	cd_everywhere_at_once(t_data *data, char *cmd)
